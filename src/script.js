@@ -81,21 +81,27 @@ gltfLoader.setDRACOLoader(dracoLoader)
 let mixer = null
 
 //load models
+//ground
 gltfLoader.load(
-    '/model/ground/scene2.gltf',
+    '/model/ground/scene.gltf',
     (gltf) =>
     {   
         ground = gltf.scene
         ground.name = 'ground'
         console.log('loaded');
-        ground.scale.set(1, 1, 1)
+        ground.scale.set(3, 3, 3)
         ground.castShadow = true
         ground.receiveShadow = true
         ground.traverse(function(node){
             node.receiveShadow = true    
         })
         scene.add(ground)
-       
+        console.log(ground);
+       // Animation
+       let mixer
+       mixer = new THREE.AnimationMixer(ground)
+       const action = mixer.clipAction(ground.animations[0])
+       action.play() 
     })
 
     //crab
@@ -108,6 +114,7 @@ gltfLoader.load(
             crab.name = 'crab'
             console.log('loaded');
             crab.scale.set(3, 3, 3);
+            crab.position.set(-20,0,23)
             crab.castShadow = true;
             crab.traverse(function(node){
                 node.castShadow = true   
@@ -145,7 +152,7 @@ gltfLoader.load(
             bird.name = 'bird';
             console.log('loaded');
             bird.scale.set(3, 3, 3);
-            bird.position.set(-6,4,8)
+            bird.position.set(-11,4,20)
             bird.castShadow = true;
             bird.traverse(function(node){
                 node.castShadow = true 
@@ -189,12 +196,12 @@ gltfLoader.load(
             })
             scene.add(girl)
         })
-//sky
+// //sky
 let skySphere
 function createSkySphere(file) {
     const geometry = new THREE.SphereGeometry(30, 30, 20);
     // Invert the geometry on the x-axis so that all of the faces point inward
-    geometry.scale(-1, 1, 1);
+    geometry.scale(-2, 2, 2);
   
     const texture = new THREE.TextureLoader().load(file);
     texture.encoding = THREE.sRGBEncoding;
@@ -213,7 +220,7 @@ function createSkySphere(file) {
 const ambientLight = new THREE.AmbientLight(0xffffff, 1.4)
 scene.add(ambientLight)
 
-const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6)
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.3)
 directionalLight.castShadow = true
 directionalLight.shadow.mapSize.set(1024, 1024)
 directionalLight.shadow.camera.far = 15
@@ -261,9 +268,9 @@ scene.add(camera)
 // Controls
 const controls = new OrbitControls(camera, canvas)
 controls.target.set(0, 0.75, 0)
-controls.min = -10
-controls.maxDistance = 30
-controls.maxPolarAngle = Math.PI*4/9
+// controls.min = -10
+// controls.maxDistance = 30
+// controls.maxPolarAngle = Math.PI*4/9
 controls.enableDamping = true
 
 /**
