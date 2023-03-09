@@ -90,11 +90,11 @@ gltfLoader.load(
         ground.name = 'ground'
         console.log('loaded');
         ground.scale.set(3, 3, 3)
-        ground.castShadow = true
+  
         ground.receiveShadow = true
         ground.traverse(function(node){
             node.receiveShadow = true
-            node.castShadow = true    
+            
         })
         scene.add(ground)
         console.log(ground);
@@ -269,10 +269,10 @@ scene.add(camera)
 
 // Controls
 const controls = new OrbitControls(camera, canvas)
-controls.target.set(0, 0.75, 0)
-// controls.min = -10
-// controls.maxDistance = 30
-// controls.maxPolarAngle = Math.PI*4/9
+controls.target.set(0, 1.5, 0.5)
+controls.min = -140
+controls.maxDistance = 30
+controls.maxPolarAngle = Math.PI*4/9
 controls.enableDamping = true
 
 /**
