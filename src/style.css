@@ -1,5 +1,4 @@
-*
-{
+*{
     margin: 0;
     padding: 0;
 }
@@ -19,17 +18,18 @@ body
 }
 
 .progress-container{
-    width: 100%;
-    height: 100%;
+    width: 101%;
+    height: 102%;
     position: absolute;
     left: 50%;
     top: 50%;
-    transform:translate(-50%,-50%);
+    transform:translate(-53%,-48%);
     background-color: black;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     z-index: 100;
 }
 #progress-bar{
@@ -55,7 +55,7 @@ label{
     z-index: 50;
     font-size: 25px;
 }
-button {
+.button {
     font-family: sans-serif;
     background: linear-gradient(to bottom right, #8f43ff, #0057ff);
     border: none;
@@ -81,16 +81,16 @@ button {
   }
   
   button:active {
-    transform: scale(0.9);
+    transform: scale(1);
   }
   
   button::after {
     content: "";
     position: absolute;
-    top: -5px;
+    /* top: -5px;
     left: -5px;
     right: -5px;
-    bottom: -5px;
+    bottom: -5px; */
     z-index: -1;
     background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%);
     border-radius: 50px;

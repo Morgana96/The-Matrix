@@ -88,13 +88,11 @@ gltfLoader.load(
     {   
         ground = gltf.scene
         ground.name = 'ground'
-        console.log('loaded');
         ground.scale.set(3, 3, 3)
-  
         ground.receiveShadow = true
         ground.traverse(function(node){
             node.receiveShadow = true
-            
+            node.castShadow = true
         })
         scene.add(ground)
         console.log(ground);
@@ -119,7 +117,6 @@ gltfLoader.load(
             crab.castShadow = true;
             crab.traverse(function(node){
                 node.castShadow = true   
-                node.receiveShadow = true  
             })
             scene.add(crab)
         })
@@ -219,19 +216,25 @@ function createSkySphere(file) {
 /**
  * Lights
  */
-const ambientLight = new THREE.AmbientLight(0xffffff, 1.4)
+const ambientLight = new THREE.AmbientLight(0xffffff, 1)
 scene.add(ambientLight)
 
-const directionalLight = new THREE.DirectionalLight(0xffffff, 0.3,100)
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1)
 directionalLight.castShadow = true
 directionalLight.shadow.mapSize.set(1024, 1024)
-directionalLight.shadow.camera.far = 15
-directionalLight.shadow.camera.left = - 7
-directionalLight.shadow.camera.top = 7
-directionalLight.shadow.camera.right = 7
-directionalLight.shadow.camera.bottom = - 7
-directionalLight.position.set(-10, 20, 0)
+// directionalLight.shadow.camera.far = 15
+directionalLight.shadow.camera.left = - 50
+directionalLight.shadow.camera.top = 50
+directionalLight.shadow.camera.right = 50
+directionalLight.shadow.camera.bottom = - 50
+directionalLight.position.set(-5, 20, 0)
 scene.add(directionalLight)
+
+// const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight)
+// scene.add(directionalLightHelper)
+
+// const helper = new THREE.CameraHelper( directionalLight.shadow.camera );
+// scene.add( helper );
 
 /**
  * Sizes
@@ -264,14 +267,14 @@ window.addEventListener('resize', () =>
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-camera.position.set(10, 6, 15)
+camera.position.set(10, 6, 20)
 scene.add(camera)
 
 // Controls
 const controls = new OrbitControls(camera, canvas)
 controls.target.set(0, 1.5, 0.5)
-controls.min = -140
-controls.maxDistance = 30
+controls.min = 20
+controls.maxDistance = 50
 controls.maxPolarAngle = Math.PI*4/9
 controls.enableDamping = true
 
