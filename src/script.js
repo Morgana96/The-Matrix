@@ -93,14 +93,15 @@ gltfLoader.load(
         ground.castShadow = true
         ground.receiveShadow = true
         ground.traverse(function(node){
-            node.receiveShadow = true    
+            node.receiveShadow = true
+            node.castShadow = true    
         })
         scene.add(ground)
         console.log(ground);
        // Animation
-       let mixer
+       
        mixer = new THREE.AnimationMixer(ground)
-       const action = mixer.clipAction(ground.animations[0])
+       const action = mixer.clipAction(gltf.animations[0])
        action.play() 
     })
 
@@ -154,6 +155,7 @@ gltfLoader.load(
             bird.scale.set(3, 3, 3);
             bird.position.set(-11,4,20)
             bird.castShadow = true;
+            bird.receiveShadow = true;
             bird.traverse(function(node){
                 node.castShadow = true 
                 node.receiveShadow = true 
@@ -220,7 +222,7 @@ function createSkySphere(file) {
 const ambientLight = new THREE.AmbientLight(0xffffff, 1.4)
 scene.add(ambientLight)
 
-const directionalLight = new THREE.DirectionalLight(0xffffff, 0.3)
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.3,100)
 directionalLight.castShadow = true
 directionalLight.shadow.mapSize.set(1024, 1024)
 directionalLight.shadow.camera.far = 15
@@ -298,7 +300,8 @@ const clock = new THREE.Clock()
 let previousTime = 0
 
 const tick = () =>
-{
+{   
+    const timeScale = 0.5
     const elapsedTime = clock.getElapsedTime()
     const deltaTime = elapsedTime - previousTime
     previousTime = elapsedTime
@@ -306,7 +309,7 @@ const tick = () =>
     // Model animation
     if(mixer)
     {
-        mixer.update(deltaTime)
+        mixer.update(deltaTime* timeScale)
     }
 
     // Update controls
