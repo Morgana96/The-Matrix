@@ -12,6 +12,7 @@ let pig
 let bird
 let koala
 let girl
+let dog
 /**
  * Base
  */
@@ -88,7 +89,7 @@ gltfLoader.load(
     {   
         ground = gltf.scene
         ground.name = 'ground'
-        ground.scale.set(3, 3, 3)
+        ground.scale.set(2.8, 2.8, 2.8)
         ground.receiveShadow = true
         ground.traverse(function(node){
             node.receiveShadow = true
@@ -131,7 +132,7 @@ gltfLoader.load(
             pig.name = 'pig'
             console.log('loaded');
             pig.scale.set(3, 3, 3);
-            pig.position.set(10,0,-2)
+            pig.position.set(-20,0,-20)
             pig.castShadow = true;
             pig.traverse(function(node){
                 node.castShadow = true  
@@ -139,7 +140,24 @@ gltfLoader.load(
             })
             scene.add(pig)
         })
-
+    //dog
+    gltfLoader.load(
+        '/model/dog/dog.gltf',
+        (gltf) =>
+        {   
+            // a pig is reading a book
+            dog = gltf.scene;
+            dog.name = 'dog'
+            console.log('loaded');
+            dog.scale.set(3, 3, 3);
+            dog.position.set(15,1,-8)
+            dog.castShadow = true;
+            dog.traverse(function(node){
+                node.castShadow = true  
+                node.receiveShadow = true   
+            })
+            scene.add(dog)
+        })
     //bird
     gltfLoader.load(
         '/model/bird/bird.gltf',
@@ -273,9 +291,9 @@ scene.add(camera)
 // Controls
 const controls = new OrbitControls(camera, canvas)
 controls.target.set(0, 1.5, 0.5)
-controls.min = 20
+controls.min = -20
 controls.maxDistance = 50
-controls.maxPolarAngle = Math.PI*4/9
+controls.maxPolarAngle = Math.PI*4.4/9
 controls.enableDamping = true
 
 /**
@@ -372,6 +390,10 @@ function onMouseOver(event) {
             break;   
         case 'bird':
             p.textContent = 'A bird is flying'
+            p.className = 'tip show';
+            break;   
+        case 'dog':
+            p.textContent = 'a dog riding a bicycle'
             p.className = 'tip show';
             break;   
         default:
