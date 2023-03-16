@@ -13,6 +13,7 @@ let bird
 let koala
 let girl
 let dog
+let cow
 /**
  * Base
  */
@@ -34,7 +35,7 @@ const button = document.querySelector('.button')
 const label = document.querySelector('label')
 
 const loadingManager = new THREE.LoadingManager()
-loadingManager.onProgress = function(url,loaded,total){
+loadingManager.onProgress = function( url,loaded,total){
    progressBar.value = (loaded / total) * 100
 }
 
@@ -89,7 +90,7 @@ gltfLoader.load(
     {   
         ground = gltf.scene
         ground.name = 'ground'
-        ground.scale.set(2.8, 2.8, 2.8)
+        ground.scale.set(2.6, 2.6, 2.6)
         ground.receiveShadow = true
         ground.traverse(function(node){
             node.receiveShadow = true
@@ -98,7 +99,6 @@ gltfLoader.load(
         scene.add(ground)
         console.log(ground);
        // Animation
-       
        mixer = new THREE.AnimationMixer(ground)
        const action = mixer.clipAction(gltf.animations[0])
        action.play() 
@@ -187,7 +187,7 @@ gltfLoader.load(
             koala.name = 'koala'
             console.log('loaded');
             koala.scale.set(3, 3, 3);
-            koala.position.set(-7,0,9)
+            koala.position.set(29,1,-19)
             koala.castShadow = true;
             koala.traverse(function(node){
                 node.castShadow = true 
@@ -195,6 +195,24 @@ gltfLoader.load(
             })
             scene.add(koala)
         })
+    //cow
+    gltfLoader.load(
+    '/model/cow/cow.gltf',
+    (gltf) =>
+    {   
+        // a crab is eating an icecream
+        cow = gltf.scene;
+        cow.name = 'cow'
+        console.log('loaded');
+        cow.scale.set(3, 3, 3);
+        cow.position.set(-7,1,-19)
+        cow.castShadow = true;
+        cow.traverse(function(node){
+            node.castShadow = true 
+            node.receiveShadow = true 
+        })
+        scene.add(cow)
+    })
     //girl
     gltfLoader.load(
         '/model/girl/girl.gltf',
