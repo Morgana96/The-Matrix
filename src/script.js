@@ -14,6 +14,8 @@ let koala
 let girl
 let dog
 let cow
+let monkey
+
 /**
  * Base
  */
@@ -113,8 +115,8 @@ gltfLoader.load(
             crab = gltf.scene;
             crab.name = 'crab'
             console.log('loaded');
-            crab.scale.set(3, 3, 3);
-            crab.position.set(-20,0,23)
+            crab.scale.set(3.5, 3.5, 3.5);
+            crab.position.set(-25,0,11)
             crab.castShadow = true;
             crab.traverse(function(node){
                 node.castShadow = true   
@@ -131,7 +133,7 @@ gltfLoader.load(
             pig = gltf.scene;
             pig.name = 'pig'
             console.log('loaded');
-            pig.scale.set(3, 3, 3);
+            pig.scale.set(3.5, 3.5, 3.5);
             pig.position.set(-20,0,-20)
             pig.castShadow = true;
             pig.traverse(function(node){
@@ -149,8 +151,8 @@ gltfLoader.load(
             dog = gltf.scene;
             dog.name = 'dog'
             console.log('loaded');
-            dog.scale.set(3, 3, 3);
-            dog.position.set(15,1,-8)
+            dog.scale.set(3.5, 3.5, 3.5);
+            dog.position.set(13,1,-8)
             dog.castShadow = true;
             dog.traverse(function(node){
                 node.castShadow = true  
@@ -167,7 +169,7 @@ gltfLoader.load(
             bird = gltf.scene;
             bird.name = 'bird';
             console.log('loaded');
-            bird.scale.set(3, 3, 3);
+            bird.scale.set(3.5, 3.5, 3.5);
             bird.position.set(-11,4,20)
             bird.castShadow = true;
             bird.receiveShadow = true;
@@ -186,8 +188,8 @@ gltfLoader.load(
             koala = gltf.scene;
             koala.name = 'koala'
             console.log('loaded');
-            koala.scale.set(3, 3, 3);
-            koala.position.set(29,1,-19)
+            koala.scale.set(3.5, 3.5, 3.5);
+            koala.position.set(25,1,-19)
             koala.castShadow = true;
             koala.traverse(function(node){
                 node.castShadow = true 
@@ -204,7 +206,7 @@ gltfLoader.load(
         cow = gltf.scene;
         cow.name = 'cow'
         console.log('loaded');
-        cow.scale.set(3, 3, 3);
+        cow.scale.set(3.5, 3.5, 3.5);
         cow.position.set(-7,1,-19)
         cow.castShadow = true;
         cow.traverse(function(node){
@@ -222,7 +224,7 @@ gltfLoader.load(
             girl = gltf.scene;
             girl.name = 'girl'
             console.log('loaded');
-            girl.scale.set(3, 3, 3);
+            girl.scale.set(3.5, 3.5, 3.5);
             girl.position.set(-3,0,13)
             girl.castShadow = true;
             girl.traverse(function(node){
@@ -230,6 +232,24 @@ gltfLoader.load(
                 node.receiveShadow = true 
             })
             scene.add(girl)
+        })
+    //monkey
+    gltfLoader.load(
+        '/model/monkey/monkey.gltf',
+        (gltf) =>
+        {   
+            // a crab is eating an icecream
+            monkey = gltf.scene;
+            monkey.name = 'monkey'
+            console.log('loaded');
+            monkey.scale.set(3.5, 3.5, 3.5);
+            monkey.position.set(7,1,6)
+            monkey.castShadow = true;
+            monkey.traverse(function(node){
+                node.castShadow = true 
+                node.receiveShadow = true 
+            })
+            scene.add(monkey)
         })
 // //sky
 let skySphere
@@ -398,6 +418,10 @@ function onMouseOver(event) {
             p.textContent = 'A crab is eating an icecream'
             p.className = 'tip show';
             break;
+        case 'monkey':
+            p.textContent = 'A monkey is climbing a ladder'
+            p.className = 'tip show';
+            break;
         case 'koala':
             p.textContent = 'A koala is listening to music with headphones '
             p.className = 'tip show';
@@ -411,7 +435,11 @@ function onMouseOver(event) {
             p.className = 'tip show';
             break;   
         case 'dog':
-            p.textContent = 'a dog riding a bicycle'
+            p.textContent = 'A dog riding a bicycle'
+            p.className = 'tip show';
+            break;  
+        case 'cow':
+            p.textContent = 'A cow is dancing'
             p.className = 'tip show';
             break;   
         default:
