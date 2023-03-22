@@ -15,6 +15,7 @@ let girl
 let dog
 let cow
 let monkey
+let spider
 
 /**
  * Base
@@ -123,12 +124,11 @@ gltfLoader.load(
             })
             scene.add(crab)
         })
-
     //pig
     gltfLoader.load(
         '/model/pig/pig.gltf',
         (gltf) =>
-        {   
+        {    
             // a pig is reading a book
             pig = gltf.scene;
             pig.name = 'pig'
@@ -142,6 +142,24 @@ gltfLoader.load(
             })
             scene.add(pig)
         })
+    // spider
+        gltfLoader.load(
+            '/model/spider/spider.gltf',
+            (gltf) =>
+            {    
+                // a pig is reading a book
+                spider = gltf.scene;
+                spider.name = 'spider'
+                console.log('loaded');
+                spider.scale.set(3.5, 3.5, 3.5);
+                spider.position.set(-12,0,-4)
+                spider.castShadow = true;
+                spider.traverse(function(node){
+                    node.castShadow = true  
+                    node.receiveShadow = true   
+                })
+                scene.add(spider)
+            })
     //dog
     gltfLoader.load(
         '/model/dog/dog.gltf',
@@ -267,8 +285,6 @@ function createSkySphere(file) {
   }
   createSkySphere("model/sky.jfif");
 
-
-  
 /**
  * Lights
  */
@@ -331,7 +347,7 @@ const controls = new OrbitControls(camera, canvas)
 controls.target.set(0, 1.5, 0.5)
 controls.min = -20
 controls.maxDistance = 50
-controls.maxPolarAngle = Math.PI*4.4/9
+controls.maxPolarAngle = Math.PI*4.5/9
 controls.enableDamping = true
 
 /**
@@ -432,6 +448,10 @@ function onMouseOver(event) {
             break;   
         case 'bird':
             p.textContent = 'A bird is flying'
+            p.className = 'tip show';
+            break;   
+        case 'spider':
+            p.textContent = 'A spider is playing tennis'
             p.className = 'tip show';
             break;   
         case 'dog':
