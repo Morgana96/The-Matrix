@@ -1,0 +1,139 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body
+{
+    overflow: hidden;
+}
+
+.webgl
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+}
+
+.progress-container{
+    width: 101%;
+    height: 102%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform:translate(-50%,-50%);
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 100;
+}
+#progress-bar{
+    width: 30%;
+    height: 2%;
+    margin-top: 0.5%;
+    z-index: 100;
+
+}
+label{
+    color: white;
+    font-size: 2rem;
+}
+
+#text{
+    position: absolute;
+    margin-left: 200px;
+    text-align: center;
+    line-height: 40px;
+    color: white;
+    height: 400px;
+    width: 80%;
+    z-index: 50;
+    font-size: 25px;
+}
+.button {
+    font-family: sans-serif;
+    background: linear-gradient(to bottom right, #8f43ff, #0057ff);
+    border: none;
+    color: white;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    width: 230px;
+    height: 80px;
+    font-size: 30px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: none;
+  }
+  
+  button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  button:active {
+    transform: scale(1);
+  }
+  
+  button::after {
+    content: "";
+    position: absolute;
+    /* top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px; */
+    z-index: -1;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%);
+    border-radius: 50px;
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+  }
+  
+button:hover::after {
+  opacity: 1;
+}
+
+.tip{
+    background-color: #543fdf73;
+    color:white;
+    font-size: 23px;
+    padding:15px;
+    position: relative;
+    top: -260px;
+    transform: translateY(50px);
+    opacity: 0;
+    transition-duration:1s ;
+    transition-property: opacity, transform;
+}
+
+.tip::after{
+    position: absolute;
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-color:  #543fdf73;
+    top: 90%;
+    left: 50%;
+    transform: rotateZ(45deg) translateX(-50%);
+    z-index: -1; 
+}
+
+.hide{
+    opacity: 0;
+    transform: translateY(-10px);
+}
+.show{
+    opacity: 0.9;
+    transform: translateY(10px);
+}
+
+/*# sourceMappingURL=main.css.map*/
