@@ -1,2 +1,4 @@
 # The Matrix
 three.js
+
+The title "The Matrix" is inspired by the movie "The Matrix," the movie revolves around a computer simulation of a virtual world called the Matrix. This work uses AI technology to generate 3D models based on various "prompts," such as "a crab is eating ice cream." However, the resulting model is not what it should be in the end. The creatures reveal a gap between the virtual world on the one hand and the real world on the other. These strange and monstrous digital creatures were produced by the distraction of the vast amount of Internet junk, and like a museum of digital creatures, these creatures make one think about the relationship between online data and the real world. The patterns generated are absurd and puzzling, yet they have something plausible when viewed through certain points of view.
